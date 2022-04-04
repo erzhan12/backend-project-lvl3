@@ -1,0 +1,31 @@
+{
+  "name": "@hexlet/code",
+  "version": "1.0.0",
+  "description": "page loader",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/erzhan12/backend-project-lvl3.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/erzhan12/backend-project-lvl3/issues"
+  },
+  "homepage": "https://github.com/erzhan12/backend-project-lvl3#readme",
+  "bin": {
+    "page-loader": "bin/page-loader.js"
+  },
+  "devDependencies": {
+    "@jest/globals": "^27.5.1",
+    "eslint": "^8.8.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-jest": "^26.1.1",
+    "jest": "^27.4.7"
+  }
+}
