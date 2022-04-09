@@ -1,7 +1,7 @@
 install: # install
 	npm ci
 
-gendiff: # 
+page-loader: # 
 	node bin/page-loader.js
 
 publish: # publish the package
