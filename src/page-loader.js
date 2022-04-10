@@ -1,15 +1,16 @@
 import axios from 'axios';
+import fsp from 'fs/promises';
+import path from 'path'
 import generateFileName from './generateFileName.js';
 
-const readPage = async (page) => {
-  const response = await axios.get(page);
-  // console.log(response.data);
-  const fileName = generateFileName(page);
-  console.log(fileName);
+const readPage = (page) => {
+  return axios.get(page);
 };
 
-const pageLoader = async (page, output) => {
-  await readPage(page);
+const pageLoader = (page, output) => {
+  const filePath = path.join(output, generateFileName(page));
+  readPage(page)
+    .then((response) => fsp.writeFile(filePath, response.data));
 };
 
 export default pageLoader;

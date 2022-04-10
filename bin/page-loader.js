@@ -6,7 +6,7 @@ import pageLoader from '../src/page-loader.js';
 const program = new Command();
 
 const pageLoaderCommand = (page, output) => {
-  console.log(pageLoader(page, output));
+  pageLoader(page, output);
 };
 
 program
