@@ -29,6 +29,7 @@
     "jest": "^27.4.7"
   },
   "dependencies": {
+    "axios": "^0.26.1",
     "commander": "^8.3.0",
     "js-yaml": "^4.1.0",
     "lodash": "^4.17.21"
