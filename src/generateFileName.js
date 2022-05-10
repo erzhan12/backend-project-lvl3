@@ -2,11 +2,32 @@ const generateFileName = (page) => {
   const myUrl = new URL(page);
   const fullPath = `${myUrl.hostname}${myUrl.pathname}`;
   const matchGroup = fullPath.match(/([a-zA-Z0-9]+)/gm);
-  // const fileName = matchGroup.reduce((acc, item) => {
-  //   return acc ? `${acc}_${item}` : item;
-  // }, '');
   const fileName = matchGroup.reduce((acc, item) => (acc ? `${acc}_${item}` : item), '');
   return `${fileName}.html`;
 };
 
-export default generateFileName;
+const generateFilesDirName = (page) => {
+  const myUrl = new URL(page);
+  const fullPath = `${myUrl.hostname}${myUrl.pathname}`;
+  const matchGroup = fullPath.match(/([a-zA-Z0-9]+)/gm);
+  const dirName = matchGroup.reduce((acc, item) => (acc ? `${acc}-${item}` : item), '');
+  return `${dirName}_files`;
+};
+
+const generateImageFileName = (page, src) => {
+  const myUrl = new URL(page);
+  const fullPath = `${myUrl.hostname}${myUrl.pathname}`;
+  const matchGroup = fullPath.match(/([a-zA-Z0-9]+)/gm);
+  const hostPath = matchGroup.reduce((acc, item) => (acc ? `${acc}-${item}` : item), '');
+  
+  const matchGroupFile = src.match((/([a-zA-Z0-9\.]+)/gm));
+  const filePath = matchGroupFile.reduce((acc, item) => (acc ? `${acc}-${item}` : item), '');
+  return `${hostPath}-${filePath}`;
+};
+
+
+export { 
+  generateFileName,
+  generateFilesDirName,
+  generateImageFileName 
+};
