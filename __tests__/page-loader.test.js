@@ -27,29 +27,29 @@ beforeEach(async () => {
   tmpDir = await fsp.mkdtemp(path.join(os.tmpdir(), 'page-loader-'));
 });
 
-// test('plain', async () => {
-//   const someHtml = await fsp.readFile(path.join(fixturesDir, 'plain.html'), 'utf-8');
-//   nock(/ru\.hexlet\.io/)
-//     .get(/courses/)
-//     .reply(200, someHtml);
-//   await pageLoader('https://ru.hexlet.io/courses', tmpDir);
-//   const data = await fsp.readFile(path.join(tmpDir, 'ru_hexlet_io_courses.html'), 'utf-8');
-//   expect(data).toBe(someHtml);
-// });
+test('plain', async () => {
+  const someHtml = await fsp.readFile(path.join(fixturesDir, 'plain.html'), 'utf-8');
+  nock(/ru\.hexlet\.io/)
+    .get(/courses/)
+    .reply(200, someHtml);
+  await pageLoader('https://ru.hexlet.io/courses', tmpDir);
+  const data = await fsp.readFile(path.join(tmpDir, 'ru_hexlet_io_courses.html'), 'utf-8');
+  expect(data).toBe(someHtml);
+});
 
-// test('image', async () => {
-//   const imageHtml = await fsp.readFile(path.join(fixturesDir, 'image.html'), 'utf-8');
-//   // const imageHtmlReplaced = await getImages('https://ru.hexlet.io/courses', tmpDir, imageHtml);
-//   const imageHtmlExpected = await fsp.readFile(path.join(fixturesDir, 'imageExpected.html'), 'utf-8');
-//   nock(/ru\.hexlet\.io/)
-//     .get(/courses/)
-//     .reply(200, imageHtml)
-//     .get('/courses/assets/professions/nodejs.png')
-//     .reply(200, 'this is an image');
-//   await pageLoader('https://ru.hexlet.io/courses', tmpDir);
-//   const data = await fsp.readFile(path.join(tmpDir, 'ru_hexlet_io_courses.html'), 'utf-8');
-//   expect(data).toBe(imageHtmlExpected);
-// });
+test('image', async () => {
+  const imageHtml = await fsp.readFile(path.join(fixturesDir, 'image.html'), 'utf-8');
+  // const imageHtmlReplaced = await getImages('https://ru.hexlet.io/courses', tmpDir, imageHtml);
+  const imageHtmlExpected = await fsp.readFile(path.join(fixturesDir, 'imageExpected.html'), 'utf-8');
+  nock(/ru\.hexlet\.io/)
+    .get(/courses/)
+    .reply(200, imageHtml)
+    .get('/courses/assets/professions/nodejs.png')
+    .reply(200, 'this is an image');
+  await pageLoader('https://ru.hexlet.io/courses', tmpDir);
+  const data = await fsp.readFile(path.join(tmpDir, 'ru_hexlet_io_courses.html'), 'utf-8');
+  expect(data).toBe(imageHtmlExpected);
+});
 
 test('links', async () => {
   const linksHtml = await fsp.readFile(path.join(fixturesDir, 'links.html'), 'utf-8');

@@ -22,17 +22,19 @@
   },
   "devDependencies": {
     "@jest/globals": "^27.5.1",
+    "axios": "^0.27.2",
+    "axios-debug-log": "^0.8.4",
     "eslint": "^8.8.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-jest": "^26.1.1",
     "jest": "^27.4.7",
-    "nock": "^13.2.4"
+    "nock": "^13.2.8"
   },
   "dependencies": {
-    "axios": "^0.26.1",
     "cheerio": "^1.0.0-rc.10",
     "commander": "^8.3.0",
+    "debug": "^4.3.4",
     "js-yaml": "^4.1.0",
     "lodash": "^4.17.21"
   }

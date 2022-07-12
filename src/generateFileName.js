@@ -27,24 +27,22 @@ const generateLinkFileName = (page, src) => {
   if (!isSourceLocal(src, page)) return; 
   try {
     const myUrl = new URL(page);
-    // const fullPath = `${myUrl.hostname}${myUrl.pathname}`;
     const fullPath = myUrl.hostname;
     const matchGroup = fullPath.match(/([a-zA-Z0-9]+)/gm);
     const hostPath = matchGroup.reduce((acc, item) => (acc ? `${acc}-${item}` : item), '');
 
-    console.log(path.parse(page));
-    console.log(path.parse(src));
-
-    const parsedSrc = path.parse(src);
-
-    const matchGroupFile = src.match((/([a-zA-Z0-9.]+)/gm));
-    const filePath = matchGroupFile.reduce((acc, item) => (acc ? `${acc}-${item}` : item), '');
-    if (!parsedSrc.ext) {
+    const matchGroupFile = src.match((/([a-zA-Z0-9.]+)/gm))
+     .filter((item) => item != myUrl.protocol.slice(0,-1) && item !== myUrl.hostname);
+    
+    let filePath = matchGroupFile.reduce((acc, item) => (acc ? `${acc}-${item}` : item), '');
+    if (path.parse(src).ext === '') {
       filePath = `${filePath}.html`;
     }
+    // console.log(`${hostPath}-${filePath}`);
     return `${hostPath}-${filePath}`;
    
   } catch (error) {
+    console.log(error)
   }
 };
 
@@ -57,7 +55,6 @@ const generateImageFileName = (page, src) => {
     return hostPath;
   } catch (e) {
     const myUrl = new URL(page);
-    // const fullPath = `${myUrl.hostname}${myUrl.pathname}`;
     const fullPath = myUrl.hostname;
     const matchGroup = fullPath.match(/([a-zA-Z0-9]+)/gm);
     const hostPath = matchGroup.reduce((acc, item) => (acc ? `${acc}-${item}` : item), '');
